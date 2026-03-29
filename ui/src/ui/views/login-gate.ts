@@ -26,7 +26,7 @@ export function renderLoginGate(state: AppViewState) {
                 const v = (e.target as HTMLInputElement).value;
                 state.applySettings({ ...state.settings, gatewayUrl: v });
               }}
-              placeholder="ws://127.0.0.1:18789"
+              placeholder="ws://127.0.0.1:31010"
             />
           </label>
           <label class="field">

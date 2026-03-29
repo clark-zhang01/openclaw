@@ -51,7 +51,7 @@ describe("probeGateway", () => {
 
   it("connects with operator.read scope", async () => {
     const result = await probeGateway({
-      url: "ws://127.0.0.1:18789",
+      url: "ws://127.0.0.1:31010",
       auth: { token: "secret" },
       timeoutMs: 1_000,
     });
@@ -79,7 +79,7 @@ describe("probeGateway", () => {
 
   it("keeps device identity disabled for unauthenticated loopback probes", async () => {
     await probeGateway({
-      url: "ws://127.0.0.1:18789",
+      url: "ws://127.0.0.1:31010",
       timeoutMs: 1_000,
     });
 
@@ -88,7 +88,7 @@ describe("probeGateway", () => {
 
   it("skips detail RPCs for lightweight reachability probes", async () => {
     const result = await probeGateway({
-      url: "ws://127.0.0.1:18789",
+      url: "ws://127.0.0.1:31010",
       timeoutMs: 1_000,
       includeDetails: false,
     });
@@ -99,7 +99,7 @@ describe("probeGateway", () => {
 
   it("fetches only presence for presence-only probes", async () => {
     const result = await probeGateway({
-      url: "ws://127.0.0.1:18789",
+      url: "ws://127.0.0.1:31010",
       timeoutMs: 1_000,
       detailLevel: "presence",
     });

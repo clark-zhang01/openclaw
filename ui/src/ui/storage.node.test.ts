@@ -91,7 +91,7 @@ describe("loadSettings default gateway URL derivation", () => {
   it("infers base path from nested pathname when configured base path is not set", async () => {
     setTestLocation({
       protocol: "http:",
-      host: "gateway.example:18789",
+      host: "gateway.example:31010",
       pathname: "/apps/openclaw/chat",
     });
 

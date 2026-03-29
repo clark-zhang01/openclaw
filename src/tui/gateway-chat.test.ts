@@ -91,7 +91,7 @@ describe("resolveGatewayConnection", () => {
     ]);
     loadConfig.mockClear();
     resolveGatewayPort.mockClear();
-    resolveGatewayPort.mockReturnValue(18789);
+    resolveGatewayPort.mockReturnValue(31010);
     delete process.env.OPENCLAW_GATEWAY_URL;
     delete process.env.OPENCLAW_GATEWAY_TOKEN;
     delete process.env.OPENCLAW_GATEWAY_PASSWORD;

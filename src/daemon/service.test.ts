@@ -77,7 +77,7 @@ describe("readGatewayServiceState", () => {
       isLoaded: vi.fn(async () => true),
       readCommand: vi.fn(async () => ({
         programArguments: ["openclaw", "gateway", "run"],
-        environment: { OPENCLAW_GATEWAY_PORT: "18789" },
+        environment: { OPENCLAW_GATEWAY_PORT: "31010" },
       })),
       readRuntime: vi.fn(async () => ({ status: "running" })),
     });
@@ -89,7 +89,7 @@ describe("readGatewayServiceState", () => {
     expect(state.installed).toBe(true);
     expect(state.loaded).toBe(true);
     expect(state.running).toBe(true);
-    expect(state.env.OPENCLAW_GATEWAY_PORT).toBe("18789");
+    expect(state.env.OPENCLAW_GATEWAY_PORT).toBe("31010");
   });
 });
 
@@ -109,7 +109,7 @@ describe("startGatewayService", () => {
   it("restarts stopped installed services and returns post-start state", async () => {
     const readCommand = vi.fn(async () => ({
       programArguments: ["openclaw", "gateway", "run"],
-      environment: { OPENCLAW_GATEWAY_PORT: "18789" },
+      environment: { OPENCLAW_GATEWAY_PORT: "31010" },
     }));
     const isLoaded = vi
       .fn<GatewayService["isLoaded"]>()

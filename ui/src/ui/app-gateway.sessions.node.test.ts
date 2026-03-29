@@ -53,7 +53,7 @@ const { handleGatewayEvent } = await import("./app-gateway.ts");
 function createHost() {
   return {
     settings: {
-      gatewayUrl: "ws://127.0.0.1:18789",
+      gatewayUrl: "ws://127.0.0.1:31010",
       token: "",
       sessionKey: "main",
       lastActiveSessionKey: "main",

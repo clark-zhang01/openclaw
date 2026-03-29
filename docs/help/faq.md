@@ -135,7 +135,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
     openclaw onboard --install-daemon
     ```
 
-    The wizard can also build UI assets automatically. After onboarding, you typically run the Gateway on port **18789**.
+    The wizard can also build UI assets automatically. After onboarding, you typically run the Gateway on port **31010**.
 
     From source (contributors/dev):
 
@@ -159,15 +159,15 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   <Accordion title="How do I authenticate the dashboard (token) on localhost vs remote?">
     **Localhost (same machine):**
 
-    - Open `http://127.0.0.1:18789/`.
+    - Open `http://127.0.0.1:31010/`.
     - If it asks for auth, paste the token from `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`) into Control UI settings.
     - Retrieve it from the gateway host: `openclaw config get gateway.auth.token` (or generate one: `openclaw doctor --generate-gateway-token`).
 
     **Not on localhost:**
 
     - **Tailscale Serve** (recommended): keep bind loopback, run `openclaw gateway --tailscale serve`, open `https://<magicdns>/`. If `gateway.auth.allowTailscale` is `true`, identity headers satisfy Control UI/WebSocket auth (no token, assumes trusted gateway host); HTTP APIs still require token/password.
-    - **Tailnet bind**: run `openclaw gateway --bind tailnet --token "<token>"`, open `http://<tailscale-ip>:18789/`, paste token in dashboard settings.
-    - **SSH tunnel**: `ssh -N -L 18789:127.0.0.1:18789 user@host` then open `http://127.0.0.1:18789/` and paste the token in Control UI settings.
+    - **Tailnet bind**: run `openclaw gateway --bind tailnet --token "<token>"`, open `http://<tailscale-ip>:31010/`, paste token in dashboard settings.
+    - **SSH tunnel**: `ssh -N -L 31010:127.0.0.1:31010 user@host` then open `http://127.0.0.1:31010/` and paste the token in Control UI settings.
 
     See [Dashboard](/web/dashboard) and [Web surfaces](/web) for bind modes and auth details.
 
@@ -1648,7 +1648,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
        - In the Tailscale admin console, enable MagicDNS so the VPS has a stable name.
     4. **Use the tailnet hostname**
        - SSH: `ssh user@your-vps.tailnet-xxxx.ts.net`
-       - Gateway WS: `ws://your-vps.tailnet-xxxx.ts.net:18789`
+       - Gateway WS: `ws://your-vps.tailnet-xxxx.ts.net:31010`
 
     If you want the Control UI without SSH, use Tailscale Serve on the VPS:
 
@@ -2427,7 +2427,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
     Precedence:
 
     ```
-    --port > OPENCLAW_GATEWAY_PORT > gateway.port > default 18789
+    --port > OPENCLAW_GATEWAY_PORT > gateway.port > default 31010
     ```
 
   </Accordion>
@@ -2457,7 +2457,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
   </Accordion>
 
   <Accordion title='What does "another gateway instance is already listening" mean?'>
-    OpenClaw enforces a runtime lock by binding the WebSocket listener immediately on startup (default `ws://127.0.0.1:18789`). If the bind fails with `EADDRINUSE`, it throws `GatewayLockError` indicating another instance is already listening.
+    OpenClaw enforces a runtime lock by binding the WebSocket listener immediately on startup (default `ws://127.0.0.1:31010`). If the bind fails with `EADDRINUSE`, it throws `GatewayLockError` indicating another instance is already listening.
 
     Fix: stop the other instance, free the port, or run with `openclaw gateway --port <port>`.
 
@@ -2471,7 +2471,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
       gateway: {
         mode: "remote",
         remote: {
-          url: "ws://gateway.tailnet:18789",
+          url: "ws://gateway.tailnet:31010",
           token: "your-token",
           password: "your-password",
         },
@@ -2498,7 +2498,7 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
 
     - Fastest: `openclaw dashboard` (prints + copies the dashboard URL, tries to open; shows SSH hint if headless).
     - If you don't have a token yet: `openclaw doctor --generate-gateway-token`.
-    - If remote, tunnel first: `ssh -N -L 18789:127.0.0.1:18789 user@host` then open `http://127.0.0.1:18789/`.
+    - If remote, tunnel first: `ssh -N -L 31010:127.0.0.1:31010 user@host` then open `http://127.0.0.1:31010/`.
     - Set `gateway.auth.token` (or `OPENCLAW_GATEWAY_TOKEN`) on the gateway host.
     - In the Control UI settings, paste the same token.
     - If mismatch persists after the one retry, rotate/re-approve the paired device token:
@@ -2554,14 +2554,14 @@ Related: [/concepts/oauth](/concepts/oauth) (OAuth flows, token storage, multi-a
 
     Quick fixes:
 
-    1. Use the WS URL: `ws://<host>:18789` (or `wss://...` if HTTPS).
+    1. Use the WS URL: `ws://<host>:31010` (or `wss://...` if HTTPS).
     2. Don't open the WS port in a normal browser tab.
     3. If auth is on, include the token/password in the `connect` frame.
 
     If you're using the CLI or TUI, the URL should look like:
 
     ```
-    openclaw tui --url ws://<host>:18789 --token <token>
+    openclaw tui --url ws://<host>:31010 --token <token>
     ```
 
     Protocol details: [Gateway protocol](/gateway/protocol).

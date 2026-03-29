@@ -62,7 +62,7 @@ describe("resolveGatewayRuntimeConfig", () => {
         expectedBindHost: "127.0.0.1",
       },
     ])("allows $name", async ({ cfg, expectedBindHost }) => {
-      const result = await resolveGatewayRuntimeConfig({ cfg, port: 18789 });
+      const result = await resolveGatewayRuntimeConfig({ cfg, port: 31010 });
       expect(result.authMode).toBe("trusted-proxy");
       expect(result.bindHost).toBe(expectedBindHost);
     });
@@ -102,7 +102,7 @@ describe("resolveGatewayRuntimeConfig", () => {
           "gateway auth mode=trusted-proxy requires gateway.trustedProxies to be configured",
       },
     ])("rejects $name", async ({ cfg, expectedMessage }) => {
-      await expect(resolveGatewayRuntimeConfig({ cfg, port: 18789 })).rejects.toThrow(
+      await expect(resolveGatewayRuntimeConfig({ cfg, port: 31010 })).rejects.toThrow(
         expectedMessage,
       );
     });
@@ -144,7 +144,7 @@ describe("resolveGatewayRuntimeConfig", () => {
         expectedBindHost: "127.0.0.1",
       },
     ])("allows $name", async ({ cfg, expectedAuthMode, expectedBindHost }) => {
-      const result = await resolveGatewayRuntimeConfig({ cfg, port: 18789 });
+      const result = await resolveGatewayRuntimeConfig({ cfg, port: 31010 });
       expect(result.authMode).toBe(expectedAuthMode);
       expect(result.bindHost).toBe(expectedBindHost);
     });
@@ -196,7 +196,7 @@ describe("resolveGatewayRuntimeConfig", () => {
         expectedMessage: "gateway bind=custom requested 192.168.1.100 but resolved 0.0.0.0",
       },
     ])("rejects $name", async ({ cfg, host, expectedMessage }) => {
-      await expect(resolveGatewayRuntimeConfig({ cfg, port: 18789, host })).rejects.toThrow(
+      await expect(resolveGatewayRuntimeConfig({ cfg, port: 31010, host })).rejects.toThrow(
         expectedMessage,
       );
     });
@@ -240,12 +240,12 @@ describe("resolveGatewayRuntimeConfig", () => {
       },
     ])("$name", async ({ cfg, expectedError, expectedBindHost }) => {
       if (expectedError) {
-        await expect(resolveGatewayRuntimeConfig({ cfg, port: 18789 })).rejects.toThrow(
+        await expect(resolveGatewayRuntimeConfig({ cfg, port: 31010 })).rejects.toThrow(
           expectedError,
         );
         return;
       }
-      const result = await resolveGatewayRuntimeConfig({ cfg, port: 18789 });
+      const result = await resolveGatewayRuntimeConfig({ cfg, port: 31010 });
       expect(result.bindHost).toBe(expectedBindHost);
     });
   });
@@ -286,7 +286,7 @@ describe("resolveGatewayRuntimeConfig", () => {
             },
           },
         },
-        port: 18789,
+        port: 31010,
       });
 
       expect(result.strictTransportSecurityHeader).toBe(expected);

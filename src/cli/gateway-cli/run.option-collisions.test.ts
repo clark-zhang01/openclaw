@@ -30,7 +30,7 @@ vi.mock("../../config/config.js", () => ({
   loadConfig: () => configState.cfg,
   readConfigFileSnapshot: async () => configState.snapshot,
   resolveStateDir: () => "/tmp",
-  resolveGatewayPort: () => 18789,
+  resolveGatewayPort: () => 31010,
 }));
 
 vi.mock("../../gateway/auth.js", () => ({
@@ -145,7 +145,7 @@ describe("gateway run option collisions", () => {
 
   function expectAuthOverrideMode(mode: string) {
     expect(startGatewayServer).toHaveBeenCalledWith(
-      18789,
+      31010,
       expect.objectContaining({
         auth: expect.objectContaining({
           mode,
@@ -166,14 +166,14 @@ describe("gateway run option collisions", () => {
       "--force",
     ]);
 
-    expect(forceFreePortAndWait).toHaveBeenCalledWith(18789, expect.anything());
+    expect(forceFreePortAndWait).toHaveBeenCalledWith(31010, expect.anything());
     expect(waitForPortBindable).toHaveBeenCalledWith(
-      18789,
+      31010,
       expect.objectContaining({ host: "127.0.0.1" }),
     );
     expect(setGatewayWsLogStyle).toHaveBeenCalledWith("full");
     expect(startGatewayServer).toHaveBeenCalledWith(
-      18789,
+      31010,
       expect.objectContaining({
         auth: expect.objectContaining({
           token: "tok_run",
@@ -186,7 +186,7 @@ describe("gateway run option collisions", () => {
     await runGatewayCli(["gateway", "run", "--allow-unconfigured"]);
 
     expect(startGatewayServer).toHaveBeenCalledWith(
-      18789,
+      31010,
       expect.objectContaining({
         bind: "loopback",
       }),
@@ -253,7 +253,7 @@ describe("gateway run option collisions", () => {
     await runGatewayCli(["gateway", "run", "--allow-unconfigured"]);
 
     expect(startGatewayServer).toHaveBeenCalledWith(
-      18789,
+      31010,
       expect.objectContaining({
         bind: "loopback",
       }),
@@ -278,7 +278,7 @@ describe("gateway run option collisions", () => {
     );
 
     expect(startGatewayServer).toHaveBeenCalledWith(
-      18789,
+      31010,
       expect.objectContaining({
         auth: expect.objectContaining({
           mode: "password",

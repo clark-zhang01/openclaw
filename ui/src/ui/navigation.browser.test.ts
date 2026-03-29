@@ -372,7 +372,7 @@ describe("control UI routing", () => {
     await app.updateComplete;
 
     const gatewayUrlInput = app.querySelector<HTMLInputElement>(
-      'input[placeholder="ws://100.x.y.z:18789"]',
+      'input[placeholder="ws://100.x.y.z:31010"]',
     );
     expect(gatewayUrlInput).not.toBeNull();
     gatewayUrlInput!.value = "wss://other-gateway.example/openclaw";

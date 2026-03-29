@@ -12298,7 +12298,7 @@ export const GENERATED_BASE_CONFIG_SCHEMA = {
     "gateway.remote.url": {
       label: "Remote Gateway URL",
       help: "Remote Gateway WebSocket URL (ws:// or wss://).",
-      placeholder: "ws://host:18789",
+      placeholder: "ws://host:31010",
       tags: ["network"],
     },
     "gateway.remote.sshTarget": {

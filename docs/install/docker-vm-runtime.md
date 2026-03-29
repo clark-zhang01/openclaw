@@ -110,7 +110,7 @@ docker compose logs -f openclaw-gateway
 Expected output:
 
 ```
-[gateway] listening on ws://0.0.0.0:18789
+[gateway] listening on ws://0.0.0.0:31010
 ```
 
 ## What persists where

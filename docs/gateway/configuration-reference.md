@@ -2520,7 +2520,7 @@ See [Plugins](/tools/plugin).
 {
   gateway: {
     mode: "local", // local | remote
-    port: 18789,
+    port: 31010,
     bind: "loopback",
     auth: {
       mode: "token", // none | token | password | trusted-proxy
@@ -2549,7 +2549,7 @@ See [Plugins](/tools/plugin).
       // dangerouslyDisableDeviceAuth: false,
     },
     remote: {
-      url: "ws://gateway.tailnet:18789",
+      url: "ws://gateway.tailnet:31010",
       transport: "ssh", // ssh | direct
       token: "your-token",
       // password: "your-password",
@@ -2578,10 +2578,10 @@ See [Plugins](/tools/plugin).
 <Accordion title="Gateway field details">
 
 - `mode`: `local` (run gateway) or `remote` (connect to remote gateway). Gateway refuses to start unless `local`.
-- `port`: single multiplexed port for WS + HTTP. Precedence: `--port` > `OPENCLAW_GATEWAY_PORT` > `gateway.port` > `18789`.
+- `port`: single multiplexed port for WS + HTTP. Precedence: `--port` > `OPENCLAW_GATEWAY_PORT` > `gateway.port` > `31010`.
 - `bind`: `auto`, `loopback` (default), `lan` (`0.0.0.0`), `tailnet` (Tailscale IP only), or `custom`.
 - **Legacy bind aliases**: use bind mode values in `gateway.bind` (`auto`, `loopback`, `lan`, `tailnet`, `custom`), not host aliases (`0.0.0.0`, `127.0.0.1`, `localhost`, `::`, `::1`).
-- **Docker note**: the default `loopback` bind listens on `127.0.0.1` inside the container. With Docker bridge networking (`-p 18789:18789`), traffic arrives on `eth0`, so the gateway is unreachable. Use `--network host`, or set `bind: "lan"` (or `bind: "custom"` with `customBindHost: "0.0.0.0"`) to listen on all interfaces.
+- **Docker note**: the default `loopback` bind listens on `127.0.0.1` inside the container. With Docker bridge networking (`-p 31010:31010`), traffic arrives on `eth0`, so the gateway is unreachable. Use `--network host`, or set `bind: "lan"` (or `bind: "custom"` with `customBindHost: "0.0.0.0"`) to listen on all interfaces.
 - **Auth**: required by default. Non-loopback binds require a shared token/password. Onboarding wizard generates a token by default.
 - If both `gateway.auth.token` and `gateway.auth.password` are configured (including SecretRefs), set `gateway.auth.mode` explicitly to `token` or `password`. Startup and service install/repair flows fail when both are configured and mode is unset.
 - `gateway.auth.mode: "none"`: explicit no-auth mode. Use only for trusted local loopback setups; this is intentionally not offered by onboarding prompts.
@@ -2713,7 +2713,7 @@ Auth: `Authorization: Bearer <token>` or `x-openclaw-token: <token>`.
       topic: "projects/<project-id>/topics/gog-gmail-watch",
       subscription: "gog-gmail-watch-push",
       pushToken: "shared-push-token",
-      hookUrl: "http://127.0.0.1:18789/hooks/gmail",
+      hookUrl: "http://127.0.0.1:31010/hooks/gmail",
       includeBody: true,
       maxBytes: 20000,
       renewEveryMinutes: 720,
@@ -3101,7 +3101,7 @@ Split config into multiple files:
 ```json5
 // ~/.openclaw/openclaw.json
 {
-  gateway: { port: 18789 },
+  gateway: { port: 31010 },
   agents: { $include: "./agents.json5" },
   broadcast: {
     $include: ["./clients/mueller.json5", "./clients/schmidt.json5"],

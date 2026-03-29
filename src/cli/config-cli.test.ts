@@ -140,7 +140,7 @@ describe("config cli", () => {
         agents: {
           list: [{ id: "main" }, { id: "oracle", workspace: "~/oracle-workspace" }],
         },
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         tools: { allow: ["group:fs"] },
         logging: { level: "debug" },
       };
@@ -154,7 +154,7 @@ describe("config cli", () => {
       expect(mockWriteConfigFile).toHaveBeenCalledTimes(1);
       const written = mockWriteConfigFile.mock.calls[0]?.[0];
       expect(written.gateway?.auth).toEqual({ mode: "token" });
-      expect(written.gateway?.port).toBe(18789);
+      expect(written.gateway?.port).toBe(31010);
       expect(written.agents).toEqual(resolved.agents);
       expect(written.tools).toEqual(resolved.tools);
       expect(written.logging).toEqual(resolved.logging);
@@ -163,7 +163,7 @@ describe("config cli", () => {
 
     it("does not inject runtime defaults into the written config", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
       };
       const runtimeMerged = {
         ...resolved,
@@ -188,13 +188,13 @@ describe("config cli", () => {
       expect(written).not.toHaveProperty("agents.defaults.maxTokens");
       expect(written).not.toHaveProperty("messages.ackReaction");
       expect(written).not.toHaveProperty("sessions.persistence");
-      expect(written.gateway?.port).toBe(18789);
+      expect(written.gateway?.port).toBe(31010);
       expect(written.gateway?.auth).toEqual({ mode: "token" });
     });
 
     it("auto-seeds a valid Ollama provider when setting only models.providers.ollama.apiKey", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
       };
       setSnapshot(resolved, resolved);
 
@@ -319,7 +319,7 @@ describe("config cli", () => {
   describe("config validate", () => {
     it("prints success and exits 0 when config is valid", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
       };
       setSnapshot(resolved, resolved);
 
@@ -414,7 +414,7 @@ describe("config cli", () => {
 
   describe("config set parsing flags", () => {
     it("falls back to raw string when parsing fails and strict mode is off", async () => {
-      const resolved: OpenClawConfig = { gateway: { port: 18789 } };
+      const resolved: OpenClawConfig = { gateway: { port: 31010 } };
       setSnapshot(resolved, resolved);
 
       await runConfigCommand(["config", "set", "gateway.auth.mode", "{bad"]);
@@ -452,7 +452,7 @@ describe("config cli", () => {
     });
 
     it("accepts --strict-json with batch mode and applies batch payload", async () => {
-      const resolved: OpenClawConfig = { gateway: { port: 18789 } };
+      const resolved: OpenClawConfig = { gateway: { port: 31010 } };
       setSnapshot(resolved, resolved);
 
       await runConfigCommand([
@@ -500,7 +500,7 @@ describe("config cli", () => {
   describe("config set builders and dry-run", () => {
     it("supports SecretRef builder mode without requiring a value argument", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
       };
       setSnapshot(resolved, resolved);
 
@@ -527,7 +527,7 @@ describe("config cli", () => {
 
     it("supports provider builder mode under secrets.providers.<alias>", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
       };
       setSnapshot(resolved, resolved);
 
@@ -554,7 +554,7 @@ describe("config cli", () => {
 
     it("runs resolvability checks in builder dry-run mode without writing", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             default: { source: "env" },
@@ -592,7 +592,7 @@ describe("config cli", () => {
 
     it("requires schema validation in JSON dry-run mode", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
       };
       setSnapshot(resolved, resolved);
 
@@ -615,7 +615,7 @@ describe("config cli", () => {
 
     it("logs a dry-run note when value mode performs no validation checks", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
       };
       setSnapshot(resolved, resolved);
 
@@ -635,7 +635,7 @@ describe("config cli", () => {
 
     it("supports batch mode for refs/providers in dry-run", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             default: { source: "env" },
@@ -658,7 +658,7 @@ describe("config cli", () => {
 
     it("skips exec SecretRef resolvability checks in dry-run by default", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             runner: {
@@ -695,7 +695,7 @@ describe("config cli", () => {
 
     it("allows exec SecretRef resolvability checks in dry-run when --allow-exec is set", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             runner: {
@@ -755,7 +755,7 @@ describe("config cli", () => {
 
     it("fails dry-run when skipped exec refs use an unconfigured provider", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {},
         },
@@ -785,7 +785,7 @@ describe("config cli", () => {
 
     it("fails dry-run when skipped exec refs use a provider with mismatched source", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             runner: {
@@ -821,7 +821,7 @@ describe("config cli", () => {
 
     it("writes sibling SecretRef paths when target uses sibling-ref shape", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         channels: {
           googlechat: {
             enabled: true,
@@ -898,7 +898,7 @@ describe("config cli", () => {
     });
 
     it("supports batch-file mode", async () => {
-      const resolved: OpenClawConfig = { gateway: { port: 18789 } };
+      const resolved: OpenClawConfig = { gateway: { port: 31010 } };
       setSnapshot(resolved, resolved);
 
       const pathname = path.join(
@@ -953,7 +953,7 @@ describe("config cli", () => {
 
     it("fails dry-run when a builder-assigned SecretRef is unresolved", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             default: { source: "env" },
@@ -985,7 +985,7 @@ describe("config cli", () => {
 
     it("emits structured JSON for --dry-run --json success", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             default: { source: "env" },
@@ -1030,7 +1030,7 @@ describe("config cli", () => {
 
     it("emits skipped exec metadata for --dry-run --json success", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             runner: {
@@ -1074,7 +1074,7 @@ describe("config cli", () => {
 
     it("emits structured JSON for --dry-run --json failure", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             default: { source: "env" },
@@ -1115,7 +1115,7 @@ describe("config cli", () => {
 
     it("aggregates schema and resolvability failures in --dry-run --json mode", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             default: { source: "env" },
@@ -1152,7 +1152,7 @@ describe("config cli", () => {
 
     it("fails dry-run when provider updates make existing refs unresolvable", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             vaultfile: { source: "file", path: "/tmp/secrets.json", mode: "json" },
@@ -1195,7 +1195,7 @@ describe("config cli", () => {
 
     it("fails dry-run for nested provider edits that make existing refs unresolvable", async () => {
       const resolved: OpenClawConfig = {
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         secrets: {
           providers: {
             vaultfile: { source: "file", path: "/tmp/secrets.json", mode: "json" },
@@ -1277,7 +1277,7 @@ describe("config cli", () => {
     it("preserves existing config keys when unsetting a value", async () => {
       const resolved: OpenClawConfig = {
         agents: { list: [{ id: "main" }] },
-        gateway: { port: 18789 },
+        gateway: { port: 31010 },
         tools: {
           profile: "coding",
           alsoAllow: ["agents_list"],
@@ -1307,7 +1307,7 @@ describe("config cli", () => {
 
   describe("config file", () => {
     it("prints the active config file path", async () => {
-      const resolved: OpenClawConfig = { gateway: { port: 18789 } };
+      const resolved: OpenClawConfig = { gateway: { port: 31010 } };
       setSnapshot(resolved, resolved);
 
       await runConfigCommand(["config", "file"]);
@@ -1317,7 +1317,7 @@ describe("config cli", () => {
     });
 
     it("handles config file path with home directory", async () => {
-      const resolved: OpenClawConfig = { gateway: { port: 18789 } };
+      const resolved: OpenClawConfig = { gateway: { port: 31010 } };
       const snapshot = buildSnapshot({ resolved, config: resolved });
       snapshot.path = "/home/user/.openclaw/openclaw.json";
       mockReadConfigFileSnapshot.mockResolvedValueOnce(snapshot);

@@ -718,7 +718,7 @@ run_ref_onboard() {
     --mode local \
     --auth-choice openai-api-key \
     --secret-input-mode ref \
-    --gateway-port 18789 \
+    --gateway-port 31010 \
     --gateway-bind loopback \
     --install-daemon \
     --skip-skills \

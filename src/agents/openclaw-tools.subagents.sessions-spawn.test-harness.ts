@@ -161,7 +161,7 @@ vi.mock("../config/config.js", async (importOriginal) => {
   return {
     ...actual,
     loadConfig: () => hoisted.state.configOverride,
-    resolveGatewayPort: () => 18789,
+    resolveGatewayPort: () => 31010,
   };
 });
 
@@ -171,6 +171,6 @@ vi.mock("../../config/config.js", async (importOriginal) => {
   return {
     ...actual,
     loadConfig: () => hoisted.state.configOverride,
-    resolveGatewayPort: () => 18789,
+    resolveGatewayPort: () => 31010,
   };
 });

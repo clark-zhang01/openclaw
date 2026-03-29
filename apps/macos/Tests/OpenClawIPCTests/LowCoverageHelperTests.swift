@@ -124,18 +124,18 @@ struct LowCoverageHelperTests {
         #expect(listeners[1].command == "ssh")
 
         let okReport = PortGuardian._testBuildReport(
-            port: 18789,
+            port: 31010,
             mode: .local,
             listeners: [(pid: 1, command: "node", fullCommand: "node", user: "me")])
         #expect(okReport.offenders.isEmpty)
 
         let badReport = PortGuardian._testBuildReport(
-            port: 18789,
+            port: 31010,
             mode: .local,
             listeners: [(pid: 2, command: "python", fullCommand: "python", user: "me")])
         #expect(!badReport.offenders.isEmpty)
 
-        let emptyReport = PortGuardian._testBuildReport(port: 18789, mode: .local, listeners: [])
+        let emptyReport = PortGuardian._testBuildReport(port: 31010, mode: .local, listeners: [])
         #expect(emptyReport.summary.contains("Nothing is listening"))
     }
 
@@ -143,45 +143,45 @@ struct LowCoverageHelperTests {
         #expect(PortGuardian._testIsExpected(
             command: "com.docker.backend",
             fullCommand: "com.docker.backend",
-            port: 18789, mode: .remote) == true)
+            port: 31010, mode: .remote) == true)
 
         #expect(PortGuardian._testIsExpected(
             command: "ssh",
-            fullCommand: "ssh -L 18789:localhost:18789 user@host",
-            port: 18789, mode: .remote) == true)
+            fullCommand: "ssh -L 31010:localhost:31010 user@host",
+            port: 31010, mode: .remote) == true)
 
         #expect(PortGuardian._testIsExpected(
             command: "podman",
             fullCommand: "podman",
-            port: 18789, mode: .remote) == true)
+            port: 31010, mode: .remote) == true)
     }
 
     @Test func `port guardian local mode still rejects unexpected`() {
         #expect(PortGuardian._testIsExpected(
             command: "com.docker.backend",
             fullCommand: "com.docker.backend",
-            port: 18789, mode: .local) == false)
+            port: 31010, mode: .local) == false)
 
         #expect(PortGuardian._testIsExpected(
             command: "python",
             fullCommand: "python server.py",
-            port: 18789, mode: .local) == false)
+            port: 31010, mode: .local) == false)
 
         #expect(PortGuardian._testIsExpected(
             command: "node",
             fullCommand: "node /path/to/gateway-daemon",
-            port: 18789, mode: .local) == true)
+            port: 31010, mode: .local) == true)
     }
 
     @Test func `port guardian remote mode report accepts any listener`() {
         let dockerReport = PortGuardian._testBuildReport(
-            port: 18789, mode: .remote,
+            port: 31010, mode: .remote,
             listeners: [(pid: 99, command: "com.docker.backend",
                          fullCommand: "com.docker.backend", user: "me")])
         #expect(dockerReport.offenders.isEmpty)
 
         let localDockerReport = PortGuardian._testBuildReport(
-            port: 18789, mode: .local,
+            port: 31010, mode: .local,
             listeners: [(pid: 99, command: "com.docker.backend",
                          fullCommand: "com.docker.backend", user: "me")])
         #expect(!localDockerReport.offenders.isEmpty)

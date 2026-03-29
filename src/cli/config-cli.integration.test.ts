@@ -71,7 +71,7 @@ describe("config cli integration", () => {
         configPath,
         `${JSON.stringify(
           {
-            gateway: { port: 18789 },
+            gateway: { port: 31010 },
           },
           null,
           2,
@@ -159,7 +159,7 @@ describe("config cli integration", () => {
         configPath,
         `${JSON.stringify(
           {
-            gateway: { port: 18789 },
+            gateway: { port: 31010 },
             secrets: {
               providers: {
                 default: { source: "env" },
@@ -228,7 +228,7 @@ describe("config cli integration", () => {
         configPath,
         `${JSON.stringify(
           {
-            gateway: { port: 18789 },
+            gateway: { port: 31010 },
           },
           null,
           2,
@@ -283,7 +283,7 @@ describe("config cli integration", () => {
         configPath,
         `${JSON.stringify(
           {
-            gateway: { port: 18789 },
+            gateway: { port: 31010 },
           },
           null,
           2,

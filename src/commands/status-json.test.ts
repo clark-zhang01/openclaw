@@ -65,7 +65,7 @@ function createScanResult() {
     memory: null,
     memoryPlugin: null,
     gatewayMode: "local",
-    gatewayConnection: { url: "ws://127.0.0.1:18789", urlSource: "config" },
+    gatewayConnection: { url: "ws://127.0.0.1:31010", urlSource: "config" },
     remoteUrlMissing: false,
     gatewayReachable: false,
     gatewayProbe: null,

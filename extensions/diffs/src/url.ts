@@ -1,6 +1,6 @@
 import type { OpenClawConfig } from "../api.js";
 
-const DEFAULT_GATEWAY_PORT = 18789;
+const DEFAULT_GATEWAY_PORT = 31010;
 
 export function buildViewerUrl(params: {
   config: OpenClawConfig;

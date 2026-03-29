@@ -3,11 +3,11 @@ import { isGatewayArgv, parseProcCmdline } from "./gateway-process-argv.js";
 
 describe("parseProcCmdline", () => {
   it("splits null-delimited argv and trims empty entries", () => {
-    expect(parseProcCmdline(" node \0 gateway \0\0 --port \0 18789 \0")).toEqual([
+    expect(parseProcCmdline(" node \0 gateway \0\0 --port \0 31010 \0")).toEqual([
       "node",
       "gateway",
       "--port",
-      "18789",
+      "31010",
     ]);
   });
 
@@ -19,7 +19,7 @@ describe("parseProcCmdline", () => {
 
 describe("isGatewayArgv", () => {
   it("requires a gateway token", () => {
-    expect(isGatewayArgv(["node", "dist/index.js", "--port", "18789"])).toBe(false);
+    expect(isGatewayArgv(["node", "dist/index.js", "--port", "31010"])).toBe(false);
   });
 
   it("matches known entrypoints across slash and case variants", () => {

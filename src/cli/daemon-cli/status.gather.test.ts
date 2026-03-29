@@ -49,7 +49,7 @@ const resolveGatewayBindHost = vi.fn(
   async (_bindMode?: string, _customBindHost?: string) => "0.0.0.0",
 );
 const pickPrimaryTailnetIPv4 = vi.fn(() => "100.64.0.9");
-const resolveGatewayPort = vi.fn((_cfg?: unknown, _env?: unknown) => 18789);
+const resolveGatewayPort = vi.fn((_cfg?: unknown, _env?: unknown) => 31010);
 const resolveStateDir = vi.fn(
   (env: NodeJS.ProcessEnv) => env.OPENCLAW_STATE_DIR ?? "/tmp/openclaw-cli",
 );

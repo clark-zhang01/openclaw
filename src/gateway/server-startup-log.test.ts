@@ -15,7 +15,7 @@ describe("gateway startup log", () => {
         },
       },
       bindHost: "127.0.0.1",
-      port: 18789,
+      port: 31010,
       log: { info, warn },
       isNixMode: false,
     });
@@ -35,7 +35,7 @@ describe("gateway startup log", () => {
     logGatewayStartup({
       cfg: {},
       bindHost: "127.0.0.1",
-      port: 18789,
+      port: 31010,
       log: { info, warn },
       isNixMode: false,
     });
@@ -51,7 +51,7 @@ describe("gateway startup log", () => {
       cfg: {},
       bindHost: "127.0.0.1",
       bindHosts: ["127.0.0.1", "::1"],
-      port: 18789,
+      port: 31010,
       log: { info, warn },
       isNixMode: false,
     });
@@ -60,7 +60,7 @@ describe("gateway startup log", () => {
       .map((call) => call[0])
       .filter((message) => message.startsWith("listening on "));
     expect(listenMessages).toEqual([
-      `listening on ws://127.0.0.1:18789, ws://[::1]:18789 (PID ${process.pid})`,
+      `listening on ws://127.0.0.1:31010, ws://[::1]:31010 (PID ${process.pid})`,
     ]);
   });
 });

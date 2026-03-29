@@ -16,7 +16,7 @@ const inspectPortUsage = vi.hoisted(() => vi.fn());
 const readLastGatewayErrorLine = vi.hoisted(() => vi.fn(async () => null));
 
 vi.mock("../config/config.js", () => ({
-  resolveGatewayPort: vi.fn(() => 18789),
+  resolveGatewayPort: vi.fn(() => 31010),
 }));
 
 vi.mock("../daemon/constants.js", () => ({
@@ -113,7 +113,7 @@ describe("maybeRepairGatewayDaemon", () => {
     service.readRuntime.mockResolvedValue({ status: "running" });
     service.restart.mockResolvedValue({ outcome: "completed" });
     inspectPortUsage.mockResolvedValue({
-      port: 18789,
+      port: 31010,
       status: "free",
       listeners: [],
       hints: [],

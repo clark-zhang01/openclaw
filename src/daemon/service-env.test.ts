@@ -277,7 +277,7 @@ describe("buildServiceEnvironment", () => {
   it("sets minimal PATH and gateway vars", () => {
     const env = buildServiceEnvironment({
       env: { HOME: "/home/user" },
-      port: 18789,
+      port: 31010,
     });
     expect(env.HOME).toBe("/home/user");
     if (process.platform === "win32") {
@@ -285,7 +285,7 @@ describe("buildServiceEnvironment", () => {
     } else {
       expect(env.PATH).toContain("/usr/bin");
     }
-    expect(env.OPENCLAW_GATEWAY_PORT).toBe("18789");
+    expect(env.OPENCLAW_GATEWAY_PORT).toBe("31010");
     expect(env.OPENCLAW_GATEWAY_TOKEN).toBeUndefined();
     expect(env.OPENCLAW_SERVICE_MARKER).toBe("openclaw");
     expect(env.OPENCLAW_SERVICE_KIND).toBe("gateway");
@@ -300,7 +300,7 @@ describe("buildServiceEnvironment", () => {
   it("forwards TMPDIR from the host environment", () => {
     const env = buildServiceEnvironment({
       env: { HOME: "/home/user", TMPDIR: "/var/folders/xw/abc123/T/" },
-      port: 18789,
+      port: 31010,
     });
     expect(env.TMPDIR).toBe("/var/folders/xw/abc123/T/");
   });
@@ -308,7 +308,7 @@ describe("buildServiceEnvironment", () => {
   it("falls back to os.tmpdir when TMPDIR is not set", () => {
     const env = buildServiceEnvironment({
       env: { HOME: "/home/user" },
-      port: 18789,
+      port: 31010,
     });
     expect(env.TMPDIR).toBe(os.tmpdir());
   });
@@ -316,7 +316,7 @@ describe("buildServiceEnvironment", () => {
   it("uses profile-specific unit and label", () => {
     const env = buildServiceEnvironment({
       env: { HOME: "/home/user", OPENCLAW_PROFILE: "work" },
-      port: 18789,
+      port: 31010,
     });
     expect(env.OPENCLAW_SYSTEMD_UNIT).toBe("openclaw-gateway-work.service");
     expect(env.OPENCLAW_WINDOWS_TASK_NAME).toBe("OpenClaw Gateway (work)");
@@ -335,7 +335,7 @@ describe("buildServiceEnvironment", () => {
         http_proxy: "http://proxy.local:7890",
         all_proxy: "socks5://proxy.local:1080",
       },
-      port: 18789,
+      port: 31010,
     });
 
     expect(env.HTTP_PROXY).toBe("http://proxy.local:7890");
@@ -351,7 +351,7 @@ describe("buildServiceEnvironment", () => {
         HOME: "C:\\Users\\alice",
         PATH: "C:\\Windows\\System32;C:\\Tools\\rg",
       },
-      port: 18789,
+      port: 31010,
       platform: "win32",
     });
 
@@ -362,7 +362,7 @@ describe("buildServiceEnvironment", () => {
   it("prepends extra runtime directories to the gateway service PATH", () => {
     const env = buildServiceEnvironment({
       env: { HOME: "/home/user" },
-      port: 18789,
+      port: 31010,
       platform: "linux",
       extraPathDirs: ["/home/user/.nvm/versions/node/v22.22.0/bin"],
     });
@@ -443,7 +443,7 @@ describe("shared Node TLS env defaults", () => {
     {
       name: "gateway service env",
       build: (env: Record<string, string | undefined>, platform?: NodeJS.Platform) =>
-        buildServiceEnvironment({ env, port: 18789, platform }),
+        buildServiceEnvironment({ env, port: 31010, platform }),
     },
     {
       name: "node service env",
@@ -544,7 +544,7 @@ describe("shared Node TLS env defaults", () => {
   it("sets macOS TLS defaults for gateway services", () => {
     const env = buildServiceEnvironment({
       env: { HOME: "/Users/test" },
-      port: 18789,
+      port: 31010,
       platform: "darwin",
     });
     expect(env.NODE_EXTRA_CA_CERTS).toBe("/etc/ssl/cert.pem");
@@ -564,7 +564,7 @@ describe("shared Node TLS env defaults", () => {
     const expected = resolveLinuxSystemCaBundle();
     const env = buildServiceEnvironment({
       env: { HOME: "/home/user", NVM_DIR: "/home/user/.nvm" },
-      port: 18789,
+      port: 31010,
       platform: "linux",
       execPath: "/usr/bin/node",
     });
@@ -584,7 +584,7 @@ describe("shared Node TLS env defaults", () => {
   it("does not default NODE_EXTRA_CA_CERTS on Linux without nvm", () => {
     const env = buildServiceEnvironment({
       env: { HOME: "/home/user" },
-      port: 18789,
+      port: 31010,
       platform: "linux",
       execPath: "/usr/bin/node",
     });

@@ -27,7 +27,7 @@ System control (launchd/systemd) lives on the Gateway host. See [Gateway](/gatew
 
 Android node app ⇄ (mDNS/NSD + WebSocket) ⇄ **Gateway**
 
-Android connects directly to the Gateway WebSocket (default `ws://<host>:18789`) and uses device pairing (`role: node`).
+Android connects directly to the Gateway WebSocket (default `ws://<host>:31010`) and uses device pairing (`role: node`).
 
 ### Prerequisites
 
@@ -41,12 +41,12 @@ Android connects directly to the Gateway WebSocket (default `ws://<host>:18789`)
 ### 1) Start the Gateway
 
 ```bash
-openclaw gateway --port 18789 --verbose
+openclaw gateway --port 31010 --verbose
 ```
 
 Confirm in logs you see something like:
 
-- `listening on ws://0.0.0.0:18789`
+- `listening on ws://0.0.0.0:31010`
 
 For tailnet-only setups (recommended for Vienna ⇄ London), bind the gateway to the tailnet IP:
 
@@ -126,20 +126,20 @@ The Android Chat tab supports session selection (default `main`, plus other exis
 
 If you want the node to show real HTML/CSS/JS that the agent can edit on disk, point the node at the Gateway canvas host.
 
-Note: nodes load canvas from the Gateway HTTP server (same port as `gateway.port`, default `18789`).
+Note: nodes load canvas from the Gateway HTTP server (same port as `gateway.port`, default `31010`).
 
 1. Create `~/.openclaw/workspace/canvas/index.html` on the gateway host.
 
 2. Navigate the node to it (LAN):
 
 ```bash
-openclaw nodes invoke --node "<Android Node>" --command canvas.navigate --params '{"url":"http://<gateway-hostname>.local:18789/__openclaw__/canvas/"}'
+openclaw nodes invoke --node "<Android Node>" --command canvas.navigate --params '{"url":"http://<gateway-hostname>.local:31010/__openclaw__/canvas/"}'
 ```
 
-Tailnet (optional): if both devices are on Tailscale, use a MagicDNS name or tailnet IP instead of `.local`, e.g. `http://<gateway-magicdns>:18789/__openclaw__/canvas/`.
+Tailnet (optional): if both devices are on Tailscale, use a MagicDNS name or tailnet IP instead of `.local`, e.g. `http://<gateway-magicdns>:31010/__openclaw__/canvas/`.
 
 This server injects a live-reload client into HTML and reloads on file changes.
-The A2UI host lives at `http://<gateway-host>:18789/__openclaw__/a2ui/`.
+The A2UI host lives at `http://<gateway-host>:31010/__openclaw__/a2ui/`.
 
 Canvas commands (foreground only):
 

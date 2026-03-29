@@ -135,24 +135,24 @@ If `adb devices -l` shows `unauthorized`, re-plug and accept the trust prompt ag
 
 ### USB-only gateway testing (no LAN dependency)
 
-Use `adb reverse` so Android `localhost:18789` tunnels to your laptop `localhost:18789`.
+Use `adb reverse` so Android `localhost:31010` tunnels to your laptop `localhost:31010`.
 
 Terminal A (gateway):
 
 ```bash
-pnpm openclaw gateway --port 18789 --verbose
+pnpm openclaw gateway --port 31010 --verbose
 ```
 
 Terminal B (USB tunnel):
 
 ```bash
-adb reverse tcp:18789 tcp:18789
+adb reverse tcp:31010 tcp:31010
 ```
 
 Then in app **Connect → Manual**:
 
 - Host: `127.0.0.1`
-- Port: `18789`
+- Port: `31010`
 - TLS: off
 
 ## Hot Reload / Fast Iteration
@@ -169,7 +169,7 @@ This app is native Kotlin + Jetpack Compose.
 1) Start the gateway (on your main machine):
 
 ```bash
-pnpm openclaw gateway --port 18789 --verbose
+pnpm openclaw gateway --port 31010 --verbose
 ```
 
 2) In the Android app:

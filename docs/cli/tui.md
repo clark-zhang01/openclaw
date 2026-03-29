@@ -23,7 +23,7 @@ Notes:
 
 ```bash
 openclaw tui
-openclaw tui --url ws://127.0.0.1:18789 --token <token>
+openclaw tui --url ws://127.0.0.1:31010 --token <token>
 openclaw tui --session main --deliver
 # when run inside an agent workspace, infers that agent automatically
 openclaw tui --session bugfix

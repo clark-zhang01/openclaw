@@ -18,7 +18,7 @@ const pluginApiMocks = vi.hoisted(() => ({
   })),
   revokeDeviceBootstrapToken: vi.fn(async () => ({ removed: true })),
   renderQrPngBase64: vi.fn(async () => "ZmFrZXBuZw=="),
-  resolveGatewayPort: vi.fn(() => 18789),
+  resolveGatewayPort: vi.fn(() => 31010),
   resolvePreferredOpenClawTmpDir: vi.fn(() => path.join(os.tmpdir(), "openclaw-device-pair-tests")),
 }));
 
@@ -71,7 +71,7 @@ function createApi(params?: {
       },
     },
     pluginConfig: {
-      publicUrl: "ws://51.79.175.165:18789",
+      publicUrl: "ws://51.79.175.165:31010",
       ...(params?.pluginConfig ?? {}),
     },
     runtime: (params?.runtime ?? {}) as OpenClawPluginApi["runtime"],

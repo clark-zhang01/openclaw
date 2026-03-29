@@ -23,7 +23,7 @@ Interactive onboarding for local or remote Gateway setup.
 openclaw onboard
 openclaw onboard --flow quickstart
 openclaw onboard --flow manual
-openclaw onboard --mode remote --remote-url wss://gateway-host:18789
+openclaw onboard --mode remote --remote-url wss://gateway-host:31010
 ```
 
 For plaintext private-network `ws://` targets (trusted networks only), set

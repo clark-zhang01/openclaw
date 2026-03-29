@@ -82,13 +82,13 @@ describe("promptRemoteGatewayConfig", () => {
         instanceName: "gateway",
         displayName: "Gateway",
         host: "gateway.tailnet.ts.net",
-        port: 18789,
+        port: 31010,
       },
     ]);
 
     const text: WizardPrompter["text"] = vi.fn(async (params) => {
       if (params.message === "Gateway WebSocket URL") {
-        expect(params.initialValue).toBe("wss://gateway.tailnet.ts.net:18789");
+        expect(params.initialValue).toBe("wss://gateway.tailnet.ts.net:31010");
         expect(params.validate?.(String(params.initialValue))).toBeUndefined();
         return String(params.initialValue);
       }
@@ -109,7 +109,7 @@ describe("promptRemoteGatewayConfig", () => {
     });
 
     expect(next.gateway?.mode).toBe("remote");
-    expect(next.gateway?.remote?.url).toBe("wss://gateway.tailnet.ts.net:18789");
+    expect(next.gateway?.remote?.url).toBe("wss://gateway.tailnet.ts.net:31010");
     expect(next.gateway?.remote?.token).toBe("token-123");
     expect(prompter.note).toHaveBeenCalledWith(
       expect.stringContaining("Direct remote access defaults to TLS."),
@@ -141,7 +141,7 @@ describe("promptRemoteGatewayConfig", () => {
     });
     const text: WizardPrompter["text"] = vi.fn(async (params) => {
       if (params.message === "Gateway WebSocket URL") {
-        expect(params.initialValue).toBe("ws://127.0.0.1:18789");
+        expect(params.initialValue).toBe("ws://127.0.0.1:31010");
         return String(params.initialValue);
       }
       return "";
@@ -154,7 +154,7 @@ describe("promptRemoteGatewayConfig", () => {
 
     const next = await promptRemoteGatewayConfig({} as OpenClawConfig, prompter);
 
-    expect(next.gateway?.remote?.url).toBe("ws://127.0.0.1:18789");
+    expect(next.gateway?.remote?.url).toBe("ws://127.0.0.1:31010");
     expect(select).not.toHaveBeenCalledWith(
       expect.objectContaining({ message: "Connection method" }),
     );
@@ -164,12 +164,12 @@ describe("promptRemoteGatewayConfig", () => {
     const text: WizardPrompter["text"] = vi.fn(async (params) => {
       if (params.message === "Gateway WebSocket URL") {
         // ws:// to public IPs is rejected
-        expect(params.validate?.("ws://203.0.113.10:18789")).toContain("Use wss://");
+        expect(params.validate?.("ws://203.0.113.10:31010")).toContain("Use wss://");
         // ws:// to private IPs remains blocked by default
-        expect(params.validate?.("ws://10.0.0.8:18789")).toContain("Use wss://");
-        expect(params.validate?.("ws://127.0.0.1:18789")).toBeUndefined();
-        expect(params.validate?.("wss://remote.example.com:18789")).toBeUndefined();
-        return "wss://remote.example.com:18789";
+        expect(params.validate?.("ws://10.0.0.8:31010")).toContain("Use wss://");
+        expect(params.validate?.("ws://127.0.0.1:31010")).toBeUndefined();
+        expect(params.validate?.("wss://remote.example.com:31010")).toBeUndefined();
+        return "wss://remote.example.com:31010";
       }
       return "";
     }) as WizardPrompter["text"];
@@ -181,7 +181,7 @@ describe("promptRemoteGatewayConfig", () => {
     });
 
     expect(next.gateway?.mode).toBe("remote");
-    expect(next.gateway?.remote?.url).toBe("wss://remote.example.com:18789");
+    expect(next.gateway?.remote?.url).toBe("wss://remote.example.com:31010");
     expect(next.gateway?.remote?.token).toBeUndefined();
   });
 
@@ -189,9 +189,9 @@ describe("promptRemoteGatewayConfig", () => {
     process.env.OPENCLAW_ALLOW_INSECURE_PRIVATE_WS = "1";
     const text: WizardPrompter["text"] = vi.fn(async (params) => {
       if (params.message === "Gateway WebSocket URL") {
-        expect(params.validate?.("ws://openclaw-gateway.ai:18789")).toBeUndefined();
-        expect(params.validate?.("ws://1.1.1.1:18789")).toContain("Use wss://");
-        return "ws://openclaw-gateway.ai:18789";
+        expect(params.validate?.("ws://openclaw-gateway.ai:31010")).toBeUndefined();
+        expect(params.validate?.("ws://1.1.1.1:31010")).toContain("Use wss://");
+        return "ws://openclaw-gateway.ai:31010";
       }
       return "";
     }) as WizardPrompter["text"];
@@ -203,14 +203,14 @@ describe("promptRemoteGatewayConfig", () => {
     });
 
     expect(next.gateway?.mode).toBe("remote");
-    expect(next.gateway?.remote?.url).toBe("ws://openclaw-gateway.ai:18789");
+    expect(next.gateway?.remote?.url).toBe("ws://openclaw-gateway.ai:31010");
   });
 
   it("supports storing remote auth as an external env secret ref", async () => {
     process.env.OPENCLAW_GATEWAY_TOKEN = "remote-token-value";
     const text: WizardPrompter["text"] = vi.fn(async (params) => {
       if (params.message === "Gateway WebSocket URL") {
-        return "wss://remote.example.com:18789";
+        return "wss://remote.example.com:31010";
       }
       if (params.message === "Environment variable name") {
         return "OPENCLAW_GATEWAY_TOKEN";
@@ -241,7 +241,7 @@ describe("promptRemoteGatewayConfig", () => {
     const next = await promptRemoteGatewayConfig(cfg, prompter);
 
     expect(next.gateway?.mode).toBe("remote");
-    expect(next.gateway?.remote?.url).toBe("wss://remote.example.com:18789");
+    expect(next.gateway?.remote?.url).toBe("wss://remote.example.com:31010");
     expect(next.gateway?.remote?.token).toEqual({
       source: "env",
       provider: "default",

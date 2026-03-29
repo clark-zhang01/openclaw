@@ -242,7 +242,7 @@ private func resolveGatewayEndpoint(opts: ConnectOptions, config: GatewayConfig)
         return try gatewayEndpoint(fromRawURL: raw, opts: opts, mode: resolvedMode, config: config)
     }
 
-    let port = config.port ?? 18789
+    let port = config.port ?? 31010
     let host = resolveLocalHost(bind: config.bind)
     guard let url = URL(string: "ws://\(host):\(port)") else {
         throw NSError(

@@ -413,7 +413,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       topic: "projects/<project-id>/topics/gog-gmail-watch",
       subscription: "gog-gmail-watch-push",
       pushToken: "shared-push-token",
-      hookUrl: "http://127.0.0.1:18789/hooks/gmail",
+      hookUrl: "http://127.0.0.1:31010/hooks/gmail",
       includeBody: true,
       maxBytes: 20000,
       renewEveryMinutes: 720,
@@ -425,7 +425,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
   // Gateway + networking
   gateway: {
     mode: "local",
-    port: 18789,
+    port: 31010,
     bind: "loopback",
     controlUi: { enabled: true, basePath: "/openclaw" },
     auth: {
@@ -434,7 +434,7 @@ Save to `~/.openclaw/openclaw.json` and you can DM the bot from that number.
       allowTailscale: true,
     },
     tailscale: { mode: "serve", resetOnExit: false },
-    remote: { url: "ws://gateway.tailnet:18789", token: "remote-token" },
+    remote: { url: "ws://gateway.tailnet:31010", token: "remote-token" },
     reload: { mode: "hybrid", debounceMs: 300 },
   },
 

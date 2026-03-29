@@ -84,7 +84,7 @@ function deriveDefaultGatewayUrl(): { pageUrl: string; effectiveUrl: string } {
   if (!isViteDevPage()) {
     return { pageUrl, effectiveUrl: pageUrl };
   }
-  const effectiveUrl = `${proto}://${formatHostWithPort(location.hostname, "18789")}`;
+  const effectiveUrl = `${proto}://${formatHostWithPort(location.hostname, "31010")}`;
   return { pageUrl, effectiveUrl };
 }
 

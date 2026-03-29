@@ -7,7 +7,7 @@ describe("node.canvas.capability.refresh", () => {
     const respond = vi.fn();
     const client = {
       connect: { role: "node", client: { id: "node-1" } },
-      canvasHostUrl: "http://127.0.0.1:18789",
+      canvasHostUrl: "http://127.0.0.1:31010",
       canvasCapability: "old-token",
       canvasCapabilityExpiresAtMs: Date.now() - 1,
     };

@@ -15,10 +15,10 @@ Volume={{OPENCLAW_HOME}}/.openclaw:/home/node/.openclaw:Z
 EnvironmentFile={{OPENCLAW_HOME}}/.openclaw/.env
 Environment=HOME=/home/node
 Environment=TERM=xterm-256color
-PublishPort=18789:18789
+PublishPort=31010:31010
 PublishPort=18790:18790
 Pull=never
-Exec=node dist/index.js gateway --bind lan --port 18789
+Exec=node dist/index.js gateway --bind lan --port 31010
 
 [Service]
 TimeoutStartSec=300

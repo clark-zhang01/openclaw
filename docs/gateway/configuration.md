@@ -50,7 +50,7 @@ See the [full reference](/gateway/configuration-reference) for every available f
     ```
   </Tab>
   <Tab title="Control UI">
-    Open [http://127.0.0.1:18789](http://127.0.0.1:18789) and use the **Config** tab.
+    Open [http://127.0.0.1:31010](http://127.0.0.1:31010) and use the **Config** tab.
     The Control UI renders a form from the config schema, with a **Raw JSON** editor as an escape hatch.
   </Tab>
   <Tab title="Direct edit">
@@ -415,7 +415,7 @@ When validation fails:
     ```json5
     // ~/.openclaw/openclaw.json
     {
-      gateway: { port: 18789 },
+      gateway: { port: 31010 },
       agents: { $include: "./agents.json5" },
       broadcast: {
         $include: ["./clients/a.json5", "./clients/b.json5"],

@@ -33,7 +33,7 @@ vi.mock("../utils.js", async () => {
 });
 
 const { restartScheduledTask, stopScheduledTask } = await import("./schtasks.js");
-const GATEWAY_PORT = 18789;
+const GATEWAY_PORT = 31010;
 const SUCCESS_RESPONSE = { code: 0, stdout: "", stderr: "" } as const;
 
 function pushSuccessfulSchtasksResponses(count: number) {
@@ -156,7 +156,7 @@ describe("Scheduled Task stop/restart cleanup", () => {
         .mockResolvedValueOnce(
           busyPortUsage(6262, {
             commandLine:
-              '"C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\steipete\\AppData\\Roaming\\npm\\node_modules\\openclaw\\dist\\index.js" gateway --port 18789',
+              '"C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\steipete\\AppData\\Roaming\\npm\\node_modules\\openclaw\\dist\\index.js" gateway --port 31010',
           }),
         )
         .mockResolvedValueOnce(freePortUsage());

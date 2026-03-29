@@ -54,8 +54,8 @@ describe("ports helpers", () => {
     };
 
     await handlePortError(
-      new PortInUseError(18789, "node dist/index.js openclaw gateway"),
-      18789,
+      new PortInUseError(31010, "node dist/index.js openclaw gateway"),
+      31010,
       "gateway start",
       runtime,
     ).catch(() => {});
@@ -111,7 +111,7 @@ describeUnix("inspectPortUsage", () => {
       if (command === "ps") {
         if (argv.includes("command=")) {
           return {
-            stdout: "node /tmp/openclaw/dist/index.js gateway --port 18789\n",
+            stdout: "node /tmp/openclaw/dist/index.js gateway --port 31010\n",
             stderr: "",
             code: 0,
           };

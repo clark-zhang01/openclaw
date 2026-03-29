@@ -95,7 +95,7 @@ vi.mock("./controllers/chat.ts", async (importOriginal) => {
 function createHost() {
   return {
     settings: {
-      gatewayUrl: "ws://127.0.0.1:18789",
+      gatewayUrl: "ws://127.0.0.1:31010",
       token: "",
       sessionKey: "main",
       lastActiveSessionKey: "main",
@@ -338,13 +338,13 @@ describe("connectGateway", () => {
       reason: "connect failed",
       error: {
         code: "INVALID_REQUEST",
-        message: "Failed to fetch gateway metadata from ws://127.0.0.1:18789",
+        message: "Failed to fetch gateway metadata from ws://127.0.0.1:31010",
         details: { code: ConnectErrorDetailCodes.AUTH_TOKEN_MISMATCH },
       },
     });
 
     expect(host.lastErrorCode).toBe(ConnectErrorDetailCodes.AUTH_TOKEN_MISMATCH);
-    expect(host.lastError).toBe("Failed to fetch gateway metadata from ws://127.0.0.1:18789");
+    expect(host.lastError).toBe("Failed to fetch gateway metadata from ws://127.0.0.1:31010");
   });
 
   it("prefers structured connect errors over close reason", () => {

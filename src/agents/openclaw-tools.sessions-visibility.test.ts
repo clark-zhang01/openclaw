@@ -13,7 +13,7 @@ vi.mock("../config/config.js", async (importOriginal) => {
   return {
     ...actual,
     loadConfig: () => mockConfig,
-    resolveGatewayPort: () => 18789,
+    resolveGatewayPort: () => 31010,
   };
 });
 
@@ -31,7 +31,7 @@ async function loadFreshOpenClawToolsModuleForTest() {
     return {
       ...actual,
       loadConfig: () => mockConfig,
-      resolveGatewayPort: () => 18789,
+      resolveGatewayPort: () => 31010,
     };
   });
   ({ createOpenClawTools } = await import("./openclaw-tools.js"));

@@ -10,6 +10,6 @@ spec:
     app: openclaw
   ports:
     - name: gateway
-      port: 18789
-      targetPort: 18789
+      port: 31010
+      targetPort: 31010
       protocol: TCP

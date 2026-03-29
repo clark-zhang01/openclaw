@@ -10,7 +10,7 @@ data:
       "gateway": {
         "mode": "local",
         "bind": "loopback",
-        "port": 18789,
+        "port": 31010,
         "auth": {
           "mode": "token"
         },

@@ -62,7 +62,7 @@ Docker is **optional**. Use it only if you want a containerized gateway or to va
   </Step>
 
   <Step title="Open the Control UI">
-    Open `http://127.0.0.1:18789/` in your browser and paste the token into
+    Open `http://127.0.0.1:31010/` in your browser and paste the token into
     Settings.
 
     Need the URL again?
@@ -106,7 +106,7 @@ docker compose run --rm --no-deps --entrypoint node openclaw-gateway \
   dist/index.js config set gateway.bind lan
 docker compose run --rm --no-deps --entrypoint node openclaw-gateway \
   dist/index.js config set gateway.controlUi.allowedOrigins \
-  '["http://localhost:18789","http://127.0.0.1:18789"]' --strict-json
+  '["http://localhost:31010","http://127.0.0.1:31010"]' --strict-json
 docker compose up -d openclaw-gateway
 ```
 
@@ -142,8 +142,8 @@ The setup script accepts these optional environment variables:
 Container probe endpoints (no auth required):
 
 ```bash
-curl -fsS http://127.0.0.1:18789/healthz   # liveness
-curl -fsS http://127.0.0.1:18789/readyz     # readiness
+curl -fsS http://127.0.0.1:31010/healthz   # liveness
+curl -fsS http://127.0.0.1:31010/readyz     # readiness
 ```
 
 The Docker image includes a built-in `HEALTHCHECK` that pings `/healthz`.
@@ -159,7 +159,7 @@ docker compose exec openclaw-gateway node dist/index.js health --token "$OPENCLA
 ### LAN vs loopback
 
 `scripts/docker/setup.sh` defaults `OPENCLAW_GATEWAY_BIND=lan` so host access to
-`http://127.0.0.1:18789` works with Docker port publishing.
+`http://127.0.0.1:31010` works with Docker port publishing.
 
 - `lan` (default): host browser and host CLI can reach the published gateway port.
 - `loopback`: only processes inside the container network namespace can reach
@@ -387,7 +387,7 @@ scripts/sandbox-setup.sh
     ```bash
     docker compose run --rm openclaw-cli config set gateway.mode local
     docker compose run --rm openclaw-cli config set gateway.bind lan
-    docker compose run --rm openclaw-cli devices list --url ws://127.0.0.1:18789
+    docker compose run --rm openclaw-cli devices list --url ws://127.0.0.1:31010
     ```
 
   </Accordion>

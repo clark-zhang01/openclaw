@@ -38,7 +38,7 @@ stop_gateway() {
 start_gateway() {
   local log_file="$1"
   : > "$log_file"
-  node "$OPENCLAW_ENTRY" gateway --port 18789 --bind loopback --allow-unconfigured \
+  node "$OPENCLAW_ENTRY" gateway --port 31010 --bind loopback --allow-unconfigured \
     >"$log_file" 2>&1 &
   gateway_pid=$!
 
@@ -62,7 +62,7 @@ start_gateway() {
 wait_for_gateway_health() {
   for _ in $(seq 1 120); do
     if node "$OPENCLAW_ENTRY" gateway health \
-      --url ws://127.0.0.1:18789 \
+      --url ws://127.0.0.1:31010 \
       --token plugin-e2e-token \
       --json >/dev/null 2>&1; then
       return 0
@@ -91,7 +91,7 @@ const gatewayArgs = [
   "gateway",
   "call",
   "--url",
-  "ws://127.0.0.1:18789",
+  "ws://127.0.0.1:31010",
   "--token",
   "plugin-e2e-token",
   "--timeout",
@@ -477,7 +477,7 @@ const config = fs.existsSync(configPath)
   : {};
 config.gateway = {
   ...(config.gateway || {}),
-  port: 18789,
+  port: 31010,
   auth: { mode: "token", token: "plugin-e2e-token" },
   controlUi: { enabled: false },
 };

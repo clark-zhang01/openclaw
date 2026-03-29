@@ -62,18 +62,18 @@ describe("readServiceStatusSummary", () => {
 
   it("passes command environment to runtime and loaded checks", async () => {
     const isLoaded = vi.fn(async ({ env }: GatewayServiceEnvArgs) => {
-      return env?.OPENCLAW_GATEWAY_PORT === "18789";
+      return env?.OPENCLAW_GATEWAY_PORT === "31010";
     });
     const readRuntime = vi.fn(async (env?: NodeJS.ProcessEnv) => ({
-      status: env?.OPENCLAW_GATEWAY_PORT === "18789" ? ("running" as const) : ("unknown" as const),
+      status: env?.OPENCLAW_GATEWAY_PORT === "31010" ? ("running" as const) : ("unknown" as const),
     }));
 
     const summary = await readServiceStatusSummary(
       createService({
         isLoaded,
         readCommand: vi.fn(async () => ({
-          programArguments: ["openclaw", "gateway", "run", "--port", "18789"],
-          environment: { OPENCLAW_GATEWAY_PORT: "18789" },
+          programArguments: ["openclaw", "gateway", "run", "--port", "31010"],
+          environment: { OPENCLAW_GATEWAY_PORT: "31010" },
         })),
         readRuntime,
       }),
@@ -83,13 +83,13 @@ describe("readServiceStatusSummary", () => {
     expect(isLoaded).toHaveBeenCalledWith(
       expect.objectContaining({
         env: expect.objectContaining({
-          OPENCLAW_GATEWAY_PORT: "18789",
+          OPENCLAW_GATEWAY_PORT: "31010",
         }),
       }),
     );
     expect(readRuntime).toHaveBeenCalledWith(
       expect.objectContaining({
-        OPENCLAW_GATEWAY_PORT: "18789",
+        OPENCLAW_GATEWAY_PORT: "31010",
       }),
     );
     expect(summary.installed).toBe(true);

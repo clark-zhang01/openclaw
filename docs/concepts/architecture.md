@@ -13,14 +13,14 @@ title: "Gateway Architecture"
   Baileys, Telegram via grammY, Slack, Discord, Signal, iMessage, WebChat).
 - Control-plane clients (macOS app, CLI, web UI, automations) connect to the
   Gateway over **WebSocket** on the configured bind host (default
-  `127.0.0.1:18789`).
+  `127.0.0.1:31010`).
 - **Nodes** (macOS/iOS/Android/headless) also connect over **WebSocket**, but
   declare `role: node` with explicit caps/commands.
 - One Gateway per host; it is the only place that opens a WhatsApp session.
 - The **canvas host** is served by the Gateway HTTP server under:
   - `/__openclaw__/canvas/` (agent-editable HTML/CSS/JS)
   - `/__openclaw__/a2ui/` (A2UI host)
-    It uses the same port as the Gateway (default `18789`).
+    It uses the same port as the Gateway (default `31010`).
 
 ## Components and flows
 
@@ -118,7 +118,7 @@ Details: [Gateway protocol](/gateway/protocol), [Pairing](/channels/pairing),
 - Alternative: SSH tunnel
 
   ```bash
-  ssh -N -L 18789:127.0.0.1:18789 user@host
+  ssh -N -L 31010:127.0.0.1:31010 user@host
   ```
 
 - The same handshake + auth token apply over the tunnel.

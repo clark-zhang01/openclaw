@@ -53,9 +53,9 @@ describe("gateway port resolution", () => {
     expect(
       resolveGatewayPort(
         { gateway: { port: 19002 } },
-        envWith({ OPENCLAW_GATEWAY_PORT: "127.0.0.1:18789" }),
+        envWith({ OPENCLAW_GATEWAY_PORT: "127.0.0.1:31010" }),
       ),
-    ).toBe(18789);
+    ).toBe(31010);
   });
 
   it("accepts Compose-style IPv6 host publish values from env", () => {
@@ -71,7 +71,7 @@ describe("gateway port resolution", () => {
     expect(
       resolveGatewayPort(
         { gateway: { port: 19002 } },
-        envWith({ CLAWDBOT_GATEWAY_PORT: "127.0.0.1:18789" }),
+        envWith({ CLAWDBOT_GATEWAY_PORT: "127.0.0.1:31010" }),
       ),
     ).toBe(19002);
   });

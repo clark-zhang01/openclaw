@@ -6,7 +6,7 @@ import type { DaemonActionResponse } from "./response.js";
 const resolveNodeStartupTlsEnvironmentMock = vi.hoisted(() => vi.fn());
 const loadConfigMock = vi.hoisted(() => vi.fn());
 const readConfigFileSnapshotMock = vi.hoisted(() => vi.fn());
-const resolveGatewayPortMock = vi.hoisted(() => vi.fn(() => 18789));
+const resolveGatewayPortMock = vi.hoisted(() => vi.fn(() => 31010));
 const writeConfigFileMock = vi.hoisted(() => vi.fn());
 const resolveIsNixModeMock = vi.hoisted(() => vi.fn(() => false));
 const resolveSecretInputRefMock = vi.hoisted(() =>
@@ -176,7 +176,7 @@ describe("runDaemonInstall", () => {
 
     loadConfigMock.mockReturnValue({ gateway: { auth: { mode: "token" } } });
     readConfigFileSnapshotMock.mockResolvedValue({ exists: false, valid: true, config: {} });
-    resolveGatewayPortMock.mockReturnValue(18789);
+    resolveGatewayPortMock.mockReturnValue(31010);
     resolveIsNixModeMock.mockReturnValue(false);
     resolveSecretInputRefMock.mockReturnValue({ ref: undefined });
     resolveGatewayAuthMock.mockReturnValue({
@@ -270,7 +270,7 @@ describe("runDaemonInstall", () => {
     };
     expect(writtenConfig.gateway?.auth?.token).toBe("minted-token");
     expect(buildGatewayInstallPlanMock).toHaveBeenCalledWith(
-      expect.objectContaining({ port: 18789 }),
+      expect.objectContaining({ port: 31010 }),
     );
     expectFirstInstallPlanCallOmitsToken();
     expect(installDaemonServiceAndEmitMock).toHaveBeenCalledTimes(1);

@@ -137,7 +137,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
       tailnetDns: "host.tailnet.ts.net",
       cliPath: "/opt/homebrew/bin/openclaw",
@@ -148,11 +148,11 @@ describe("gateway bonjour advertiser", () => {
     expect(gatewayCall?.[0]?.type).toBe("openclaw-gw");
     const gatewayType = asString(gatewayCall?.[0]?.type, "");
     expect(gatewayType.length).toBeLessThanOrEqual(15);
-    expect(gatewayCall?.[0]?.port).toBe(18789);
+    expect(gatewayCall?.[0]?.port).toBe(31010);
     expect(gatewayCall?.[0]?.domain).toBe("local");
     expect(gatewayCall?.[0]?.hostname).toBe("test-host");
     expect((gatewayCall?.[0]?.txt as Record<string, string>)?.lanHost).toBe("test-host.local");
-    expect((gatewayCall?.[0]?.txt as Record<string, string>)?.gatewayPort).toBe("18789");
+    expect((gatewayCall?.[0]?.txt as Record<string, string>)?.gatewayPort).toBe("31010");
     expect((gatewayCall?.[0]?.txt as Record<string, string>)?.sshPort).toBe("2222");
     expect((gatewayCall?.[0]?.txt as Record<string, string>)?.cliPath).toBe(
       "/opt/homebrew/bin/openclaw",
@@ -177,7 +177,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
       cliPath: "/opt/homebrew/bin/openclaw",
       minimal: true,
@@ -203,7 +203,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy, on });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 
@@ -230,7 +230,7 @@ describe("gateway bonjour advertiser", () => {
     registerUnhandledRejectionHandler.mockImplementation(() => cleanup);
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 
@@ -249,7 +249,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 
@@ -286,7 +286,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy, serviceState: "unannounced" });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 
@@ -319,7 +319,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy, serviceState: "unannounced" });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 
@@ -352,7 +352,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy, stateRef });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 
@@ -393,7 +393,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy, stateRef });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 
@@ -423,7 +423,7 @@ describe("gateway bonjour advertiser", () => {
     mockCiaoService({ advertise, destroy });
 
     const started = await startGatewayBonjourAdvertiser({
-      gatewayPort: 18789,
+      gatewayPort: 31010,
       sshPort: 2222,
     });
 

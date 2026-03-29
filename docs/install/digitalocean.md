@@ -86,10 +86,10 @@ Run a persistent OpenClaw Gateway on a DigitalOcean Droplet.
 
     ```bash
     # From your local machine
-    ssh -L 18789:localhost:18789 root@YOUR_DROPLET_IP
+    ssh -L 31010:localhost:31010 root@YOUR_DROPLET_IP
     ```
 
-    Then open `http://localhost:18789`.
+    Then open `http://localhost:31010`.
 
     **Option B: Tailscale Serve**
 
@@ -109,7 +109,7 @@ Run a persistent OpenClaw Gateway on a DigitalOcean Droplet.
     openclaw gateway restart
     ```
 
-    Then open `http://<tailscale-ip>:18789` (token required).
+    Then open `http://<tailscale-ip>:31010` (token required).
 
   </Step>
 </Steps>
@@ -118,7 +118,7 @@ Run a persistent OpenClaw Gateway on a DigitalOcean Droplet.
 
 **Gateway will not start** -- Run `openclaw doctor --non-interactive` and check logs with `journalctl --user -u openclaw-gateway.service -n 50`.
 
-**Port already in use** -- Run `lsof -i :18789` to find the process, then stop it.
+**Port already in use** -- Run `lsof -i :31010` to find the process, then stop it.
 
 **Out of memory** -- Verify swap is active with `free -h`. If still hitting OOM, use API-based models (Claude, GPT) rather than local models, or upgrade to a 2 GB Droplet.
 

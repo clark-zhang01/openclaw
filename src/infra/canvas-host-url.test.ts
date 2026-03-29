@@ -31,21 +31,21 @@ describe("resolveCanvasHostUrl", () => {
   it("maps proxied default gateway ports to request-host ports or scheme defaults", () => {
     expect(
       resolveCanvasHostUrl({
-        canvasPort: 18789,
+        canvasPort: 31010,
         requestHost: "gateway.example.com:9443",
         forwardedProto: "https",
       }),
     ).toBe("https://gateway.example.com:9443");
     expect(
       resolveCanvasHostUrl({
-        canvasPort: 18789,
+        canvasPort: 31010,
         requestHost: "gateway.example.com",
         forwardedProto: ["https", "http"],
       }),
     ).toBe("https://gateway.example.com:443");
     expect(
       resolveCanvasHostUrl({
-        canvasPort: 18789,
+        canvasPort: 31010,
         requestHost: "gateway.example.com",
       }),
     ).toBe("http://gateway.example.com:80");

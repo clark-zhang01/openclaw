@@ -212,7 +212,7 @@ For the generic Docker flow, see [Docker](/install/docker).
     OPENCLAW_IMAGE=openclaw:latest
     OPENCLAW_GATEWAY_TOKEN=change-me-now
     OPENCLAW_GATEWAY_BIND=lan
-    OPENCLAW_GATEWAY_PORT=18789
+    OPENCLAW_GATEWAY_PORT=31010
 
     OPENCLAW_CONFIG_DIR=/home/$USER/.openclaw
     OPENCLAW_WORKSPACE_DIR=/home/$USER/.openclaw/workspace
@@ -258,7 +258,7 @@ For the generic Docker flow, see [Docker](/install/docker).
         ports:
           # Recommended: keep the Gateway loopback-only on the VM; access via SSH tunnel.
           # To expose it publicly, remove the `127.0.0.1:` prefix and firewall accordingly.
-          - "127.0.0.1:${OPENCLAW_GATEWAY_PORT}:18789"
+          - "127.0.0.1:${OPENCLAW_GATEWAY_PORT}:31010"
         command:
           [
             "node",
@@ -292,10 +292,10 @@ For the generic Docker flow, see [Docker](/install/docker).
     When binding to LAN (`OPENCLAW_GATEWAY_BIND=lan`), configure a trusted browser origin before continuing:
 
     ```bash
-    docker compose run --rm openclaw-cli config set gateway.controlUi.allowedOrigins '["http://127.0.0.1:18789"]' --strict-json
+    docker compose run --rm openclaw-cli config set gateway.controlUi.allowedOrigins '["http://127.0.0.1:31010"]' --strict-json
     ```
 
-    If you changed the gateway port, replace `18789` with your configured port.
+    If you changed the gateway port, replace `31010` with your configured port.
 
   </Step>
 
@@ -303,12 +303,12 @@ For the generic Docker flow, see [Docker](/install/docker).
     Create an SSH tunnel to forward the Gateway port:
 
     ```bash
-    gcloud compute ssh openclaw-gateway --zone=us-central1-a -- -L 18789:127.0.0.1:18789
+    gcloud compute ssh openclaw-gateway --zone=us-central1-a -- -L 31010:127.0.0.1:31010
     ```
 
     Open in your browser:
 
-    `http://127.0.0.1:18789/`
+    `http://127.0.0.1:31010/`
 
     Fetch a fresh tokenized dashboard link:
 

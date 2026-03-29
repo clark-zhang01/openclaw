@@ -49,7 +49,7 @@ vi.mock("../infra/openclaw-root.js", () => ({
 
 vi.mock("../config/config.js", () => ({
   readConfigFileSnapshot: vi.fn(),
-  resolveGatewayPort: vi.fn(() => 18789),
+  resolveGatewayPort: vi.fn(() => 31010),
   writeConfigFile: vi.fn(),
 }));
 
@@ -363,13 +363,13 @@ describe("update-cli", () => {
     prepareRestartScript.mockResolvedValue("/tmp/openclaw-restart-test.sh");
     runRestartScript.mockResolvedValue(undefined);
     inspectPortUsage.mockResolvedValue({
-      port: 18789,
+      port: 31010,
       status: "busy",
       listeners: [{ pid: 4242, command: "openclaw-gateway" }],
       hints: [],
     });
     classifyPortListener.mockReturnValue("gateway");
-    formatPortDiagnostics.mockReturnValue(["Port 18789 is already in use."]);
+    formatPortDiagnostics.mockReturnValue(["Port 31010 is already in use."]);
     pathExists.mockResolvedValue(false);
     syncPluginsForUpdateChannel.mockResolvedValue({
       changed: false,

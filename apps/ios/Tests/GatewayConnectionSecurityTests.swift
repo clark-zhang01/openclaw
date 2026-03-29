@@ -94,7 +94,7 @@ import Testing
             stableID: stableID,
             lanHost: "test.local",
             tailnetDns: nil,
-            gatewayPort: 18789,
+            gatewayPort: 31010,
             fingerprint: nil)
         let controller = makeController()
         controller._test_setGateways([gateway])
@@ -121,9 +121,9 @@ import Testing
     @Test @MainActor func manualDefaultPortUses443OnlyForTailnetTLSHosts() async {
         let controller = makeController()
 
-        #expect(controller._test_resolveManualPort(host: "gateway.example.com", port: 0, useTLS: true) == 18789)
+        #expect(controller._test_resolveManualPort(host: "gateway.example.com", port: 0, useTLS: true) == 31010)
         #expect(controller._test_resolveManualPort(host: "device.sample.ts.net", port: 0, useTLS: true) == 443)
         #expect(controller._test_resolveManualPort(host: "device.sample.ts.net.", port: 0, useTLS: true) == 443)
-        #expect(controller._test_resolveManualPort(host: "device.sample.ts.net", port: 18789, useTLS: true) == 18789)
+        #expect(controller._test_resolveManualPort(host: "device.sample.ts.net", port: 31010, useTLS: true) == 31010)
     }
 }

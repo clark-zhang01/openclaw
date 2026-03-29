@@ -110,7 +110,7 @@ Run a persistent, always-on OpenClaw Gateway on a Raspberry Pi. Since the Pi is 
     Then create an SSH tunnel in another terminal:
 
     ```bash
-    ssh -N -L 18789:127.0.0.1:18789 user@gateway-host
+    ssh -N -L 31010:127.0.0.1:31010 user@gateway-host
     ```
 
     Open the printed URL in your local browser. For always-on remote access, see [Tailscale integration](/gateway/tailscale).

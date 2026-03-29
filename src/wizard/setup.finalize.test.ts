@@ -55,8 +55,8 @@ vi.mock("../commands/onboard-helpers.js", () => ({
   openUrl: vi.fn(async () => false),
   probeGatewayReachable,
   resolveControlUiLinks: vi.fn(() => ({
-    httpUrl: "http://127.0.0.1:18789",
-    wsUrl: "ws://127.0.0.1:18789",
+    httpUrl: "http://127.0.0.1:31010",
+    wsUrl: "ws://127.0.0.1:31010",
   })),
   waitForGatewayReachable: vi.fn(async () => {}),
 }));
@@ -217,7 +217,7 @@ function createAdvancedFinalizeArgs(params: AdvancedFinalizeArgs = {}) {
     nextConfig: params.nextConfig ?? {},
     workspaceDir: "/tmp",
     settings: {
-      port: 18789,
+      port: 31010,
       bind: "loopback" as const,
       authMode: "token" as const,
       gatewayToken: undefined,
@@ -306,7 +306,7 @@ describe("finalizeSetupWizard", () => {
         },
         workspaceDir: "/tmp",
         settings: {
-          port: 18789,
+          port: 31010,
           bind: "loopback",
           authMode: "password",
           gatewayToken: undefined,
@@ -326,13 +326,13 @@ describe("finalizeSetupWizard", () => {
 
     expect(probeGatewayReachable).toHaveBeenCalledWith(
       expect.objectContaining({
-        url: "ws://127.0.0.1:18789",
+        url: "ws://127.0.0.1:31010",
         password: "resolved-gateway-password", // pragma: allowlist secret
       }),
     );
     expect(runTui).toHaveBeenCalledWith(
       expect.objectContaining({
-        url: "ws://127.0.0.1:18789",
+        url: "ws://127.0.0.1:31010",
         password: "resolved-gateway-password", // pragma: allowlist secret
       }),
     );
@@ -369,7 +369,7 @@ describe("finalizeSetupWizard", () => {
       },
       workspaceDir: "/tmp",
       settings: {
-        port: 18789,
+        port: 31010,
         bind: "loopback",
         authMode: "token",
         gatewayToken: "session-token",
@@ -415,7 +415,7 @@ describe("finalizeSetupWizard", () => {
       nextConfig: {},
       workspaceDir: "/tmp",
       settings: {
-        port: 18789,
+        port: 31010,
         bind: "loopback",
         authMode: "token",
         gatewayToken: undefined,

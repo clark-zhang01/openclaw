@@ -2502,7 +2502,7 @@ Base URL 不应包含 `/v1`（Anthropic 客户端会追加它）。快捷方式�
 {
   gateway: {
     mode: "local", // local | remote
-    port: 18789,
+    port: 31010,
     bind: "loopback",
     auth: {
       mode: "token", // none | token | password | trusted-proxy
@@ -2531,7 +2531,7 @@ Base URL 不应包含 `/v1`（Anthropic 客户端会追加它）。快捷方式�
       // dangerouslyDisableDeviceAuth: false,
     },
     remote: {
-      url: "ws://gateway.tailnet:18789",
+      url: "ws://gateway.tailnet:31010",
       transport: "ssh", // ssh | direct
       token: "your-token",
       // password: "your-password",
@@ -2560,10 +2560,10 @@ Base URL 不应包含 `/v1`（Anthropic 客户端会追加它）。快捷方式�
 <Accordion title="Gateway 网关字段详情">
 
 - `mode`：`local`（运行网关）或 `remote`（连接远程网关）。除非为 `local`，否则 Gateway 网关拒绝启动。
-- `port`：用于 WS + HTTP 的单一复用端口。优先级：`--port` > `OPENCLAW_GATEWAY_PORT` > `gateway.port` > `18789`。
+- `port`：用于 WS + HTTP 的单一复用端口。优先级：`--port` > `OPENCLAW_GATEWAY_PORT` > `gateway.port` > `31010`。
 - `bind`：`auto`、`loopback`（默认）、`lan`（`0.0.0.0`）、`tailnet`（仅 Tailscale IP）或 `custom`。
 - **旧版 bind 别名**：请在 `gateway.bind` 中使用 bind 模式值（`auto`、`loopback`、`lan`、`tailnet`、`custom`），不要使用主机别名（`0.0.0.0`、`127.0.0.1`、`localhost`、`::`、`::1`）。
-- **Docker 说明**：默认的 `loopback` bind 在容器内监听 `127.0.0.1`。在 Docker bridge 网络（`-p 18789:18789`）下，流量从 `eth0` 进入，因此网关不可达。请使用 `--network host`，或设置 `bind: "lan"`（或 `bind: "custom"` 并配合 `customBindHost: "0.0.0.0"`）以监听所有接口。
+- **Docker 说明**：默认的 `loopback` bind 在容器内监听 `127.0.0.1`。在 Docker bridge 网络（`-p 31010:31010`）下，流量从 `eth0` 进入，因此网关不可达。请使用 `--network host`，或设置 `bind: "lan"`（或 `bind: "custom"` 并配合 `customBindHost: "0.0.0.0"`）以监听所有接口。
 - **认证**：默认要求认证。非 loopback bind 需要共享 token/password。新手引导默认会生成一个 token。
 - 如果同时配置了 `gateway.auth.token` 和 `gateway.auth.password`（包括 SecretRef），请显式设置 `gateway.auth.mode` 为 `token` 或 `password`。如果两者都已配置但 mode 未设置，启动和服务安装/修复流程都会失败。
 - `gateway.auth.mode: "none"`：显式无认证模式。仅用于受信任的本地 local loopback 设置；新手引导提示中故意不提供此选项。
@@ -2693,7 +2693,7 @@ openclaw gateway --port 19001
       topic: "projects/<project-id>/topics/gog-gmail-watch",
       subscription: "gog-gmail-watch-push",
       pushToken: "shared-push-token",
-      hookUrl: "http://127.0.0.1:18789/hooks/gmail",
+      hookUrl: "http://127.0.0.1:31010/hooks/gmail",
       includeBody: true,
       maxBytes: 20000,
       renewEveryMinutes: 720,
@@ -3081,7 +3081,7 @@ Secret refs 是增量能力：明文值仍然可用。
 ```json5
 // ~/.openclaw/openclaw.json
 {
-  gateway: { port: 18789 },
+  gateway: { port: 31010 },
   agents: { $include: "./agents.json5" },
   broadcast: {
     $include: ["./clients/mueller.json5", "./clients/schmidt.json5"],

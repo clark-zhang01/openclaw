@@ -97,7 +97,7 @@ vi.mock("openclaw/plugin-sdk/gateway-runtime", async (importOriginal) => {
     ) => {
       mockCreateOperatorApprovalsGatewayClient(params);
       const envUrl = process.env.OPENCLAW_GATEWAY_URL?.trim();
-      const gatewayUrl = params.gatewayUrl?.trim() || envUrl || "ws://127.0.0.1:18789";
+      const gatewayUrl = params.gatewayUrl?.trim() || envUrl || "ws://127.0.0.1:31010";
       const urlOverrideSource = params.gatewayUrl?.trim() ? "cli" : envUrl ? "env" : undefined;
       const auth = await mockResolveGatewayConnectionAuth({
         config: params.config,
@@ -791,7 +791,7 @@ describe("DiscordExecApprovalHandler gateway auth", () => {
 
     expect(gatewayClientStarts).toHaveBeenCalledTimes(1);
     expect(gatewayClientParams[0]).toMatchObject({
-      url: "ws://127.0.0.1:18789",
+      url: "ws://127.0.0.1:31010",
       token: "shared-gateway-token",
       password: undefined,
       scopes: ["operator.approvals"],

@@ -331,7 +331,7 @@ describe("applySettingsFromUrl", () => {
     const host = createHost("chat");
     host.settings = {
       ...host.settings,
-      gatewayUrl: "ws://localhost:18789",
+      gatewayUrl: "ws://localhost:31010",
       token: "",
       sessionKey: "agent:test_old:main",
       lastActiveSessionKey: "agent:test_old:main",
@@ -352,7 +352,7 @@ describe("applySettingsFromUrl", () => {
     const host = createHost("chat");
     host.settings = {
       ...host.settings,
-      gatewayUrl: "ws://localhost:18789",
+      gatewayUrl: "ws://localhost:31010",
       token: "",
       sessionKey: "agent:test_old:main",
       lastActiveSessionKey: "agent:test_old:main",
@@ -373,7 +373,7 @@ describe("applySettingsFromUrl", () => {
     const host = createHost("chat");
     host.settings = {
       ...host.settings,
-      gatewayUrl: "ws://gateway-a.example:18789",
+      gatewayUrl: "ws://gateway-a.example:31010",
       token: "",
       sessionKey: "agent:test_old:main",
       lastActiveSessionKey: "agent:test_old:main",
@@ -385,7 +385,7 @@ describe("applySettingsFromUrl", () => {
     expect(host.sessionKey).toBe("agent:test_old:main");
     expect(host.settings.sessionKey).toBe("agent:test_old:main");
     expect(host.settings.lastActiveSessionKey).toBe("agent:test_old:main");
-    expect(host.pendingGatewayUrl).toBe("ws://gateway-b.example:18789");
+    expect(host.pendingGatewayUrl).toBe("ws://gateway-b.example:31010");
     expect(host.pendingGatewayToken).toBe("test-token");
   });
 });

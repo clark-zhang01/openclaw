@@ -22,7 +22,7 @@ export async function withWindowsEnv(
     USERPROFILE: tmpDir,
     APPDATA: path.join(tmpDir, "AppData", "Roaming"),
     OPENCLAW_PROFILE: "default",
-    OPENCLAW_GATEWAY_PORT: "18789",
+    OPENCLAW_GATEWAY_PORT: "31010",
   };
   try {
     await run({ tmpDir, env });
@@ -40,7 +40,7 @@ export function resetSchtasksBaseMocks() {
 
 export async function writeGatewayScript(
   env: Record<string, string>,
-  port = Number(env.OPENCLAW_GATEWAY_PORT || "18789"),
+  port = Number(env.OPENCLAW_GATEWAY_PORT || "31010"),
 ) {
   const scriptPath = resolveTaskScriptPath(env);
   await fs.mkdir(path.dirname(scriptPath), { recursive: true });

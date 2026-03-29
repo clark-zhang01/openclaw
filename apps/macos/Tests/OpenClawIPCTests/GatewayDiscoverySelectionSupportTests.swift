@@ -79,7 +79,7 @@ struct GatewayDiscoverySelectionSupportTests {
             GatewayDiscoverySelectionSupport.applyRemoteSelection(
                 gateway: self.makeGateway(
                     serviceHost: "nearby-gateway.local",
-                    servicePort: 18789,
+                    servicePort: 31010,
                     stableID: "bonjour|nearby-gateway"),
                 state: state)
 

@@ -21,7 +21,7 @@ const configureGatewayForSetup = vi.hoisted(() =>
   vi.fn(async (args) => ({
     nextConfig: args.nextConfig,
     settings: {
-      port: args.localPort ?? 18789,
+      port: args.localPort ?? 31010,
       bind: "loopback",
       authMode: "token",
       gatewayToken: "test-token",
@@ -136,8 +136,8 @@ vi.mock("../commands/onboard-hooks.js", () => ({
 }));
 
 vi.mock("../config/config.js", () => ({
-  DEFAULT_GATEWAY_PORT: 18789,
-  resolveGatewayPort: () => 18789,
+  DEFAULT_GATEWAY_PORT: 31010,
+  resolveGatewayPort: () => 31010,
   readConfigFileSnapshot,
   writeConfigFile,
 }));
@@ -162,8 +162,8 @@ vi.mock("../commands/onboard-helpers.js", () => ({
   waitForGatewayReachable: vi.fn(async () => {}),
   formatControlUiSshHint: vi.fn(() => "ssh hint"),
   resolveControlUiLinks: vi.fn(() => ({
-    httpUrl: "http://127.0.0.1:18789",
-    wsUrl: "ws://127.0.0.1:18789",
+    httpUrl: "http://127.0.0.1:31010",
+    wsUrl: "ws://127.0.0.1:31010",
   })),
 }));
 
@@ -561,7 +561,7 @@ describe("runSetupWizard", () => {
 
     expect(probeGatewayReachable).toHaveBeenCalledWith(
       expect.objectContaining({
-        url: "ws://127.0.0.1:18789",
+        url: "ws://127.0.0.1:31010",
         password: "gateway-ref-password", // pragma: allowlist secret
       }),
     );
