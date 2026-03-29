@@ -368,7 +368,7 @@ describe("applySettingsFromUrl", () => {
 
   it("does not reset the current gateway session when a different gateway is pending confirmation", () => {
     setTestWindowUrl(
-      "https://control.example/chat?gatewayUrl=ws%3A%2F%2Fgateway-b.example%3A18789#token=test-token",
+      "https://control.example/chat?gatewayUrl=ws%3A%2F%2Fgateway-b.example%3A31010#token=test-token",
     );
     const host = createHost("chat");
     host.settings = {
